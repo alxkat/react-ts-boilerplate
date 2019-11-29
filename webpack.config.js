@@ -1,8 +1,10 @@
 const path = require('path')
 
+const buildMode = process.env.NODE_ENV || 'production'
+
 module.exports = {
-  mode: 'development',
-  entry: './src/index',
+  mode: buildMode,
+  entry: ['react-hot-loader/patch', './src/index'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js'
@@ -10,7 +12,9 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      utils: path.resolve(__dirname, 'src/utils/')
+      utils: path.resolve(__dirname, 'src/utils/'),
+      components: path.resolve(__dirname, 'src/components/'),
+      'react-dom': '@hot-loader/react-dom'
     }
   },
   module: {
@@ -19,5 +23,11 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader'
     }]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+    hot: true
   }
 }

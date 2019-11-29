@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack"
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +15,21 @@
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
     "@babel/preset-typescript": "^7.7.4",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
     "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "react-hot-loader": "^4.12.18",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "^16.11.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
