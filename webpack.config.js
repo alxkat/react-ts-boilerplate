@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const buildMode = process.env.NODE_ENV || 'production'
 
@@ -29,5 +30,10 @@ module.exports = {
     compress: true,
     port: 9000,
     hot: true
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ]
 }
