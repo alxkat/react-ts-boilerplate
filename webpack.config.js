@@ -1,5 +1,8 @@
+/* eslint-disable */
+
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const buildMode = process.env.NODE_ENV || 'production'
 
@@ -22,7 +25,12 @@ module.exports = {
     rules: [{
       test: /\.(ts|js)x?$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      use: ['babel-loader', {
+        loader: 'eslint-loader',
+        options: {
+          fix: true
+        }
+      }]
     }]
   },
   devServer: {
@@ -32,6 +40,7 @@ module.exports = {
     hot: true
   },
   plugins: [
+    new FriendlyErrorsWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
